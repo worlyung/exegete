@@ -1,5 +1,7 @@
 # Exegete
 
+**🌐 English | [한국어](README.ko.md)**
+
 **Hallucination-resistant Bible exegesis for Claude — in Greek, Hebrew, English, and Korean.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
