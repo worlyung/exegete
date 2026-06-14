@@ -1,0 +1,30 @@
+{
+  "_comment": "성경 배경 연구 주제 인덱스. controversy: low(본문 기반 안전) / medium / high(역사성·연대 학계 격론 → 보수·비평 양쪽 병기 필수). 분석은 항상 3층 분리(본문/역사·지리/신학) + [견해차] 표시.",
+  "topics": [
+    {"name": "아브라함의 여정", "type": "여정", "refs": ["창12:1-9", "창12-25"], "controversy": "high", "note": "족장 시대 연대·역사성 논쟁"},
+    {"name": "출애굽", "type": "사건", "refs": ["출12:1-42", "출13-15"], "controversy": "high", "note": "역사성·연대(이른 연대 BC1446 vs 늦은 연대 BC1260)·규모 학계 격론"},
+    {"name": "출애굽 광야 경로", "type": "여정", "refs": ["출13:17-18", "민33"], "controversy": "high", "note": "홍해 위치·시내산 위치·경로 비정 논쟁"},
+    {"name": "시내산 언약과 십계명", "type": "사건", "refs": ["출19-20", "출24"], "controversy": "medium", "note": "본문은 명확, 시내산 위치는 견해차"},
+    {"name": "성막", "type": "제도", "refs": ["출25-31", "출35-40"], "controversy": "low", "note": "본문에 상세 기록"},
+    {"name": "제사 제도", "type": "제도", "refs": ["레1-7"], "controversy": "low"},
+    {"name": "절기(유월절·오순절·초막절)", "type": "제도", "refs": ["레23", "신16"], "controversy": "low"},
+    {"name": "안식일·안식년·희년", "type": "제도", "refs": ["출20:8-11", "레25"], "controversy": "low"},
+    {"name": "가나안 정복", "type": "사건", "refs": ["수1", "수6", "수11"], "controversy": "high", "note": "정복 모델 vs 점진 정착 vs 사회혁명 모델 — 고고학 논쟁 격렬"},
+    {"name": "다윗과 골리앗", "type": "사건", "refs": ["삼상17"], "controversy": "high", "note": "다윗 실존(텔단 비문)·전투 세부·골리앗 신장 사본차 논쟁"},
+    {"name": "다윗의 생애", "type": "인물", "refs": ["삼상16", "삼하5", "삼하7"], "controversy": "medium", "note": "다윗 왕국 규모는 고고학 논쟁, 실존은 텔단 비문으로 다수 인정"},
+    {"name": "솔로몬 성전 건축", "type": "사건", "refs": ["왕상6", "왕상8"], "controversy": "medium", "note": "성전 유물 직접 출토 없음(성전산 발굴 제약)"},
+    {"name": "엘리야와 바알 선지자", "type": "사건", "refs": ["왕상18"], "controversy": "low"},
+    {"name": "바벨론 포로", "type": "사건", "refs": ["왕하25", "렘52", "단1"], "controversy": "low", "note": "바벨론 연대기 등 외부 사료 풍부"},
+    {"name": "포로 귀환과 성전 재건", "type": "사건", "refs": ["스1", "스6", "느2"], "controversy": "low", "note": "고레스 칙령(고레스 원통) 등 사료 있음"},
+    {"name": "예수 탄생", "type": "사건", "refs": ["눅2:1-20", "마2"], "controversy": "medium", "note": "호적·베들레헴·연대 논쟁 일부"},
+    {"name": "예수의 십자가와 부활", "type": "사건", "refs": ["막15-16", "고전15:1-8"], "controversy": "medium", "note": "신앙의 핵심. 역사적 예수 연구에서 부활은 신학·역사 경계 — 신중히 병기"},
+    {"name": "오순절 성령강림", "type": "사건", "refs": ["행2"], "controversy": "low"},
+    {"name": "바울 1차 선교여행", "type": "여정", "refs": ["행13:1-14:28"], "controversy": "low"},
+    {"name": "바울 2차 선교여행", "type": "여정", "refs": ["행15:36-18:22"], "controversy": "low", "note": "고린도 갈리오 비문=연대 기준점"},
+    {"name": "바울 3차 선교여행", "type": "여정", "refs": ["행18:23-21:17"], "controversy": "low"},
+    {"name": "바울 로마 압송 항해", "type": "여정", "refs": ["행27-28"], "controversy": "low", "note": "멜리데=몰타 통설, 일부 이설"},
+    {"name": "베드로의 생애", "type": "인물", "refs": ["마16:13-20", "행2", "행10"], "controversy": "low"},
+    {"name": "모세의 생애", "type": "인물", "refs": ["출2", "출3", "신34"], "controversy": "high", "note": "출애굽 역사성과 연동"},
+    {"name": "다니엘과 바벨론·페르시아", "type": "인물", "refs": ["단1", "단6"], "controversy": "high", "note": "저작 연대(6세기 vs 2세기)·다리오 정체 논쟁"}
+  ]
+}

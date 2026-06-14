@@ -1,0 +1,39 @@
+Exegete — Third-Party Notices
+
+The MIT License (see LICENSE) covers ONLY the original software in this
+repository: source code, prompts, and methodology documentation.
+
+It does NOT grant any rights to Bible texts, original-language texts, or
+lexicon data. Those carry their own copyrights/licenses and are NOT included
+in this repository.
+
+== Methodology inspiration ==
+- The 4-step exegesis structure is inspired by and rewritten from
+  "bible_analyze" by mitmirsein (https://github.com/mitmirsein/bible_analyze).
+  Standard biblical-studies methods (pericope analysis, discourse analysis,
+  canonical trajectory, expository homiletics) are shared scholarly heritage.
+
+== Texts/data the USER must supply under their own license ==
+See docs/DATA_SOURCES.md for details.
+
+Bundled in this repository:
+- STEPBible-Data TAGNT (Greek NT) / TAHOT (Hebrew OT) — © Tyndale House,
+  CC BY 4.0 (https://github.com/STEPBible/STEPBible-Data). See
+  src/data/original/LICENSE_STEPBible.txt. Doctrinally neutral.
+
+Public-domain / open-licensed (may be bundled by the user):
+- WEB, KJV, ASV (English) — Public Domain
+- Westcott-Hort, Tischendorf (Greek NT) — Public Domain
+- OSHB / MorphHB (Hebrew OT + morphology) — CC BY 4.0 (keep separate license)
+- MorphGNT tags — CC BY-SA (keep separate license)
+- Strong's numbers + minimal PD glosses — Public Domain
+
+Copyrighted (must NOT be bundled; user supplies under personal license only):
+- 개역개정 (Korean Revised) — © Korean Bible Society
+- NA28, BHS — © Deutsche Bibelgesellschaft
+- SBLGNT text — © SBL & Logos
+- WLC — © Westminster Seminary
+- Louw-Nida lexicon — © United Bible Societies
+
+Each bundled third-party dataset must retain its own LICENSE/COPYING file
+in its data subdirectory.

@@ -1,0 +1,467 @@
+{
+  "_comment": "개역개정 66권 약어↔정식명 매핑. testament: OT(구약)/NT(신약). 원어: 구약=히브리어, 신약=헬라어",
+  "books": [
+    {
+      "abbr": "창",
+      "name": "창세기",
+      "testament": "OT",
+      "step": "Gen",
+      "en": "Genesis"
+    },
+    {
+      "abbr": "출",
+      "name": "출애굽기",
+      "testament": "OT",
+      "step": "Exo",
+      "en": "Exodus"
+    },
+    {
+      "abbr": "레",
+      "name": "레위기",
+      "testament": "OT",
+      "step": "Lev",
+      "en": "Leviticus"
+    },
+    {
+      "abbr": "민",
+      "name": "민수기",
+      "testament": "OT",
+      "step": "Num",
+      "en": "Numbers"
+    },
+    {
+      "abbr": "신",
+      "name": "신명기",
+      "testament": "OT",
+      "step": "Deu",
+      "en": "Deuteronomy"
+    },
+    {
+      "abbr": "수",
+      "name": "여호수아",
+      "testament": "OT",
+      "step": "Jos",
+      "en": "Joshua"
+    },
+    {
+      "abbr": "삿",
+      "name": "사사기",
+      "testament": "OT",
+      "step": "Jdg",
+      "en": "Judges"
+    },
+    {
+      "abbr": "룻",
+      "name": "룻기",
+      "testament": "OT",
+      "step": "Rut",
+      "en": "Ruth"
+    },
+    {
+      "abbr": "삼상",
+      "name": "사무엘상",
+      "testament": "OT",
+      "step": "1Sa",
+      "en": "1 Samuel"
+    },
+    {
+      "abbr": "삼하",
+      "name": "사무엘하",
+      "testament": "OT",
+      "step": "2Sa",
+      "en": "2 Samuel"
+    },
+    {
+      "abbr": "왕상",
+      "name": "열왕기상",
+      "testament": "OT",
+      "step": "1Ki",
+      "en": "1 Kings"
+    },
+    {
+      "abbr": "왕하",
+      "name": "열왕기하",
+      "testament": "OT",
+      "step": "2Ki",
+      "en": "2 Kings"
+    },
+    {
+      "abbr": "대상",
+      "name": "역대상",
+      "testament": "OT",
+      "step": "1Ch",
+      "en": "1 Chronicles"
+    },
+    {
+      "abbr": "대하",
+      "name": "역대하",
+      "testament": "OT",
+      "step": "2Ch",
+      "en": "2 Chronicles"
+    },
+    {
+      "abbr": "스",
+      "name": "에스라",
+      "testament": "OT",
+      "step": "Ezr",
+      "en": "Ezra"
+    },
+    {
+      "abbr": "느",
+      "name": "느헤미야",
+      "testament": "OT",
+      "step": "Neh",
+      "en": "Nehemiah"
+    },
+    {
+      "abbr": "에",
+      "name": "에스더",
+      "testament": "OT",
+      "step": "Est",
+      "en": "Esther"
+    },
+    {
+      "abbr": "욥",
+      "name": "욥기",
+      "testament": "OT",
+      "step": "Job",
+      "en": "Job"
+    },
+    {
+      "abbr": "시",
+      "name": "시편",
+      "testament": "OT",
+      "step": "Psa",
+      "en": "Psalms"
+    },
+    {
+      "abbr": "잠",
+      "name": "잠언",
+      "testament": "OT",
+      "step": "Pro",
+      "en": "Proverbs"
+    },
+    {
+      "abbr": "전",
+      "name": "전도서",
+      "testament": "OT",
+      "step": "Ecc",
+      "en": "Ecclesiastes"
+    },
+    {
+      "abbr": "아",
+      "name": "아가",
+      "testament": "OT",
+      "step": "Sng",
+      "en": "Song of Songs"
+    },
+    {
+      "abbr": "사",
+      "name": "이사야",
+      "testament": "OT",
+      "step": "Isa",
+      "en": "Isaiah"
+    },
+    {
+      "abbr": "렘",
+      "name": "예레미야",
+      "testament": "OT",
+      "step": "Jer",
+      "en": "Jeremiah"
+    },
+    {
+      "abbr": "애",
+      "name": "예레미야애가",
+      "testament": "OT",
+      "step": "Lam",
+      "en": "Lamentations"
+    },
+    {
+      "abbr": "겔",
+      "name": "에스겔",
+      "testament": "OT",
+      "step": "Ezk",
+      "en": "Ezekiel"
+    },
+    {
+      "abbr": "단",
+      "name": "다니엘",
+      "testament": "OT",
+      "step": "Dan",
+      "en": "Daniel"
+    },
+    {
+      "abbr": "호",
+      "name": "호세아",
+      "testament": "OT",
+      "step": "Hos",
+      "en": "Hosea"
+    },
+    {
+      "abbr": "욜",
+      "name": "요엘",
+      "testament": "OT",
+      "step": "Jol",
+      "en": "Joel"
+    },
+    {
+      "abbr": "암",
+      "name": "아모스",
+      "testament": "OT",
+      "step": "Amo",
+      "en": "Amos"
+    },
+    {
+      "abbr": "옵",
+      "name": "오바댜",
+      "testament": "OT",
+      "step": "Oba",
+      "en": "Obadiah"
+    },
+    {
+      "abbr": "욘",
+      "name": "요나",
+      "testament": "OT",
+      "step": "Jon",
+      "en": "Jonah"
+    },
+    {
+      "abbr": "미",
+      "name": "미가",
+      "testament": "OT",
+      "step": "Mic",
+      "en": "Micah"
+    },
+    {
+      "abbr": "나",
+      "name": "나훔",
+      "testament": "OT",
+      "step": "Nam",
+      "en": "Nahum"
+    },
+    {
+      "abbr": "합",
+      "name": "하박국",
+      "testament": "OT",
+      "step": "Hab",
+      "en": "Habakkuk"
+    },
+    {
+      "abbr": "습",
+      "name": "스바냐",
+      "testament": "OT",
+      "step": "Zep",
+      "en": "Zephaniah"
+    },
+    {
+      "abbr": "학",
+      "name": "학개",
+      "testament": "OT",
+      "step": "Hag",
+      "en": "Haggai"
+    },
+    {
+      "abbr": "슥",
+      "name": "스가랴",
+      "testament": "OT",
+      "step": "Zec",
+      "en": "Zechariah"
+    },
+    {
+      "abbr": "말",
+      "name": "말라기",
+      "testament": "OT",
+      "step": "Mal",
+      "en": "Malachi"
+    },
+    {
+      "abbr": "마",
+      "name": "마태복음",
+      "testament": "NT",
+      "step": "Mat",
+      "en": "Matthew"
+    },
+    {
+      "abbr": "막",
+      "name": "마가복음",
+      "testament": "NT",
+      "step": "Mrk",
+      "en": "Mark"
+    },
+    {
+      "abbr": "눅",
+      "name": "누가복음",
+      "testament": "NT",
+      "step": "Luk",
+      "en": "Luke"
+    },
+    {
+      "abbr": "요",
+      "name": "요한복음",
+      "testament": "NT",
+      "step": "Jhn",
+      "en": "John"
+    },
+    {
+      "abbr": "행",
+      "name": "사도행전",
+      "testament": "NT",
+      "step": "Act",
+      "en": "Acts"
+    },
+    {
+      "abbr": "롬",
+      "name": "로마서",
+      "testament": "NT",
+      "step": "Rom",
+      "en": "Romans"
+    },
+    {
+      "abbr": "고전",
+      "name": "고린도전서",
+      "testament": "NT",
+      "step": "1Co",
+      "en": "1 Corinthians"
+    },
+    {
+      "abbr": "고후",
+      "name": "고린도후서",
+      "testament": "NT",
+      "step": "2Co",
+      "en": "2 Corinthians"
+    },
+    {
+      "abbr": "갈",
+      "name": "갈라디아서",
+      "testament": "NT",
+      "step": "Gal",
+      "en": "Galatians"
+    },
+    {
+      "abbr": "엡",
+      "name": "에베소서",
+      "testament": "NT",
+      "step": "Eph",
+      "en": "Ephesians"
+    },
+    {
+      "abbr": "빌",
+      "name": "빌립보서",
+      "testament": "NT",
+      "step": "Php",
+      "en": "Philippians"
+    },
+    {
+      "abbr": "골",
+      "name": "골로새서",
+      "testament": "NT",
+      "step": "Col",
+      "en": "Colossians"
+    },
+    {
+      "abbr": "살전",
+      "name": "데살로니가전서",
+      "testament": "NT",
+      "step": "1Th",
+      "en": "1 Thessalonians"
+    },
+    {
+      "abbr": "살후",
+      "name": "데살로니가후서",
+      "testament": "NT",
+      "step": "2Th",
+      "en": "2 Thessalonians"
+    },
+    {
+      "abbr": "딤전",
+      "name": "디모데전서",
+      "testament": "NT",
+      "step": "1Ti",
+      "en": "1 Timothy"
+    },
+    {
+      "abbr": "딤후",
+      "name": "디모데후서",
+      "testament": "NT",
+      "step": "2Ti",
+      "en": "2 Timothy"
+    },
+    {
+      "abbr": "딛",
+      "name": "디도서",
+      "testament": "NT",
+      "step": "Tit",
+      "en": "Titus"
+    },
+    {
+      "abbr": "몬",
+      "name": "빌레몬서",
+      "testament": "NT",
+      "step": "Phm",
+      "en": "Philemon"
+    },
+    {
+      "abbr": "히",
+      "name": "히브리서",
+      "testament": "NT",
+      "step": "Heb",
+      "en": "Hebrews"
+    },
+    {
+      "abbr": "약",
+      "name": "야고보서",
+      "testament": "NT",
+      "step": "Jas",
+      "en": "James"
+    },
+    {
+      "abbr": "벧전",
+      "name": "베드로전서",
+      "testament": "NT",
+      "step": "1Pe",
+      "en": "1 Peter"
+    },
+    {
+      "abbr": "벧후",
+      "name": "베드로후서",
+      "testament": "NT",
+      "step": "2Pe",
+      "en": "2 Peter"
+    },
+    {
+      "abbr": "요일",
+      "name": "요한일서",
+      "testament": "NT",
+      "step": "1Jn",
+      "en": "1 John"
+    },
+    {
+      "abbr": "요이",
+      "name": "요한이서",
+      "testament": "NT",
+      "step": "2Jn",
+      "en": "2 John"
+    },
+    {
+      "abbr": "요삼",
+      "name": "요한삼서",
+      "testament": "NT",
+      "step": "3Jn",
+      "en": "3 John"
+    },
+    {
+      "abbr": "유",
+      "name": "유다서",
+      "testament": "NT",
+      "step": "Jud",
+      "en": "Jude"
+    },
+    {
+      "abbr": "계",
+      "name": "요한계시록",
+      "testament": "NT",
+      "step": "Rev",
+      "en": "Revelation"
+    }
+  ]
+}

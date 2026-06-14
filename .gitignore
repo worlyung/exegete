@@ -1,0 +1,31 @@
+# ── 저작권 있는 성경 본문 (절대 커밋 금지) ──────────────
+# 개역개정·NA28·BHS 등 저작권 번역/원문은 사용자가 로컬에 직접 넣는다.
+src/data/*.txt
+!src/data/.gitkeep
+# 공개 도메인(PD) 본문만 화이트리스트로 허용 (예: WEB·KJV·ASV)
+!src/data/web.txt
+!src/data/kjv.txt
+!src/data/asv.txt
+
+# ── 산출물 ──────────────────────────────────
+output/
+*.md.rejected
+
+# ── 환경·캐시 ────────────────────────────────
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+
+# ── OS·에디터 ───────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+
+# 원어 형태소 데이터는 용량이 커서 git 제외 — setup_data.py로 다운로드(STEPBible CC BY)
+src/data/original/greek/
+src/data/original/hebrew/

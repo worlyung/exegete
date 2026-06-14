@@ -1,0 +1,9 @@
+원어 데이터 출처 / Original-language data source
+================================================
+STEPBible-Data — Translators Amalgamated Greek NT (TAGNT) / Hebrew OT (TAHOT)
+© Tyndale House Cambridge, curated by STEPBible.org
+License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+Source: https://github.com/STEPBible/STEPBible-Data
+
+이 데이터는 CC BY 4.0에 따라 출처 표시 조건으로 자유 사용·재배포 가능합니다.
+교파·교리 중립(no denominational or doctrinal bias).
