@@ -83,6 +83,20 @@ EXEGETE_BIBLE=data/bible_krv.txt python src/lookup.py "요3:16"
 
 ---
 
+## Export to Word (.docx) 🖨️
+
+Turn any exegesis (`output/*.md`) into a **formatted Word document** — headings, tables, original-language text, structure diagrams, and blockquotes are all preserved. Opens in **MS Word and Hangul (한컴 한글)** for editing, printing, and sharing.
+
+Just tell Claude Code: *"export that as Word."*
+
+Or run it yourself — once `pip install python-docx`:
+```bash
+python src/export_docx.py "output/Eph2_8-9.md"   # one file
+python src/export_docx.py --all                   # everything in output/
+```
+
+---
+
 ## Data & licensing
 
 - **Code, prompts, methodology**: MIT.
