@@ -24,6 +24,8 @@
    ```bash
    python src/lookup.py "<구절>" --pericope    # 단락 전체
    python src/lookup.py "<구절>" --context 3   # 또는 앞뒤 문맥
+   python src/compare.py "<구절>"              # (선택) 한국어+영어(WEB)+원어 나란히 비교
+   python src/xref.py "<구절>"                 # (선택) 관주 — 관련 구절 자동 연결(설교·상호본문 재료)
    ```
    - 출력된 **실제 본문만 인용**한다. 기억으로 본문을 쓰지 않는다.
 
@@ -71,6 +73,8 @@ python src/liturgical.py "고난주간" --refs-only   # 구절만 → 4단계 �
 python src/word_search.py G26          # 스트롱번호(헬라어 사랑 ἀγάπη)
 python src/word_search.py H2617        # 히브리어(헤세드)
 python src/word_search.py G26 --refs   # 구절만 → 대표 구절 주해로 연결
+python src/search.py "은혜"             # 번역 본문(개역한글 등)에서 한국어 단어 검색
+python src/search.py "믿음" --book 롬    # 특정 책만 (원어 스트롱은 word_search, 번역 단어는 search)
 ```
 - 출현 분포(책별 빈도)를 보여주고, 신학적 의미를 종합. 대표 구절은 4단계 주해로 연결.
 - 한국어 주제어 → 스트롱번호는 분석 AI가 매핑(예: 사랑=ἀγάπη G26 / 헤세드 H2617).

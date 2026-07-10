@@ -74,10 +74,14 @@ def parse_ref(ref, alias2step):
     return step, ch, vs, int(ve) if ve else vs
 
 
-def load_verses(alias2step):
-    """본문 파일 → {(step,ch,v): (heading,text)} + 순서. 책 약어를 step으로 정규화."""
+def load_verses(alias2step, data=None):
+    """본문 파일 → {(step,ch,v): (heading,text)} + 순서. 책 약어를 step으로 정규화.
+
+    data=None이면 기본 본문(DATA), 파일 경로를 주면 그 본문을 읽는다(번역 비교용).
+    """
     verses, order = {}, []
-    for line in DATA.read_text(encoding="utf-8").splitlines():
+    src = data if data is not None else DATA
+    for line in src.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line:
             continue
