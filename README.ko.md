@@ -9,7 +9,7 @@
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-구절 하나를 입력하면 Exegete가 **4단계 주해**를 만들어냅니다 — 구조·문맥 → 원어·담화 분석 → 신학·역사·상호본문 → 설교 프레임워크. 대부분의 AI 성경 도구와 달리, **본문도 원어 문법도 지어내지 않습니다.** 모든 구절은 실제 데이터에서 추출하고, 헬라어·히브리어 파싱은 AI의 기억이 아니라 태그된 데이터에서 가져옵니다.
+구절 하나를 입력하면 Exegete가 **4단계 주해**를 만들어냅니다 — 구조·문맥 → 원어·담화 분석 → 신학·역사·상호본문 → 설교 프레임워크. 대부분의 AI 성경 도구와 달리, **본문도 원어 문법도 지어내지 않습니다.** 모든 구절은 실제 데이터에서 추출하고, 헬라어·히브리어 파싱은 물론 **사전의 뜻까지도** AI의 기억이 아니라 실제 데이터에서 가져옵니다.
 
 ---
 
@@ -18,6 +18,8 @@
 🛡️ **성경 본문을 환각하지 않음** — 본문은 `lookup.py`로 추출하며 기억으로 떠올리지 않습니다. 원어 파싱은 STEPBible 태그 데이터 기반. 불확실한 추론은 `[확인 필요]`로 명시합니다.
 
 🔬 **진짜 원어** — 헬라어·히브리어 단어마다 뜻·스트롱번호·문법파싱·원형 제공.
+
+📖 **진짜 사전 정의** *(신규)* — `--lex`를 붙이면 단어마다 **사전 상세 정의**가 붙습니다(헬라어=Abbott-Smith · 히브리어=BDB). **확장 스트롱번호로 정확 매칭**해 동음이의어 오류를 막습니다(בָּרָא "창조하다" `H1254A` ≠ "살찌다" `H1254B`). AI가 *"BDAG에 따르면…"* 하고 뜻을 지어내는 일이 없고, 사전에 없거나 모호하면 지어내는 대신 `[확인 필요]`로 표시합니다.
 
 🌏 **다국어** — 영어·한국어 입력 모두 인식. 공개 도메인 WEB 성경 기본 포함, 원하는 번역본(개역개정 등) 추가 가능.
 
@@ -38,6 +40,12 @@ $ python src/greek_lookup.py "요3:16"
   ἠγάπησεν (ēgapēsen)  loved   [G0025 V-AAI-3S]  ← ἀγαπάω = 사랑하다 (부정과거)
   μονογενῆ (monogenē)  only    [G3439 A-ASM]     ← μονογενής = 유일한
   πιστεύων (pisteuōn)  believing [G4100 V-PAP-NSM] ← πιστεύω = 믿다 (현재분사)
+
+$ python src/greek_lookup.py "요3:16" --lex    # + 사전 상세 정의
+  ἠγάπησεν (ēgapēsen)  loved   [G0025 V-AAI-3S]  ← ἀγαπάω = 사랑하다
+      ▸ ἀγαπάω (agapaō) G0025 — to love
+        to love, to feel and exhibit esteem and goodwill to a person...
+        SYN.: φιλέω — 존중에 근거한 사랑(diligo) vs. 자연발생적 애정(amo)
 
 $ python src/word_search.py G26          # ἀγάπη(사랑)가 나오는 모든 구절
 총 114회 출현 — 요한일서(18), 고린도전서(14), 로마서(9) ...
@@ -71,6 +79,8 @@ Claude Code에게 이렇게 말하세요:
 
 **원어(헬라어·히브리어)까지 보려면** — Claude에게 "원어 데이터 받아줘"라고 하거나, `python setup_data.py`를 한 번 실행하면 자동으로 받아옵니다(약 100MB, 무료·CC BY).
 
+**사전 상세 정의까지 보려면** 📖 — Claude에게 "사전 데이터 받아줘"라고 하거나 `python src/build_lexicon.py`를 한 번 실행하면 됩니다(무료·CC BY). 그다음 원어 조회에 `--lex`를 붙이면 단어마다 사전의 상세한 뜻(헬라어 Abbott-Smith / 히브리어 BDB)이 함께 나옵니다.
+
 **한국어 개역개정으로 보고 싶으면** 🇰🇷
 개역개정은 대한성서공회 저작권이라 이 도구에 같이 넣을 수 없어요. 그래서 **본인이 가진 개역개정 파일을 직접 넣어야** 합니다(개인 연구·설교 준비용은 괜찮아요).
 → 가장 쉬운 방법: Claude Code에게 **"개역개정 성경 파일 있는데, 이걸로 한국어로 보게 설정해줘"**라고 하고 파일을 주세요. AI가 알아서 맞춰줍니다.
@@ -84,6 +94,7 @@ Claude Code에게 이렇게 말하세요:
 |------|----------------|------|
 | **4단계 주해** | "○○ 주해해줘" | 구조 → 원어 → 신학 → 설교 |
 | **단어·주제 연구** | `word_search.py G26` | 원어 단어 전체 출현·분포 |
+| **사전 상세 정의** | `greek_lookup.py <구절> --lex` | 단어마다 사전 정의(Abbott-Smith / BDB) |
 | **교회력 절기** | `liturgical.py "부활절"` | 13개 절기 핵심 본문 |
 | **강해 시리즈** | `series.py "빌립보서"` | 책을 설교 단락으로 분할 |
 | **성경 배경 연구** | `background.py "출애굽"` | 인물·사건·여정 (논쟁도 표시) |
@@ -112,6 +123,7 @@ python src/export_docx.py --all                       # output/ 전체
 - **코드·프롬프트·방법론**: MIT
 - **WEB 영어 성경** (기본 포함): Public Domain
 - **원어** (`setup_data.py`로 받기): STEPBible TAGNT/TAHOT, **CC BY 4.0** © Tyndale House, 교파 중립
+- **사전 정의** (`src/build_lexicon.py`로 받기): STEPBible TBESG(Abbott-Smith) / TBESH(BDB), **CC BY 4.0** © Tyndale House
 - **저작권 번역본** (개역개정·NA28·BHS·Louw-Nida): **절대 포함 안 함** — 본인이 준비. [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) 참조
 
 ## 한국 교회·신학생을 위해 🇰🇷

@@ -9,7 +9,7 @@
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-Give Claude a verse, and Exegete produces a rigorous **4-stage exegesis** — structure → original-language philology → theology & intertextuality → sermon framework. Unlike most AI Bible tools, **it never invents the text or the morphology**: every verse is pulled from real data, and every Greek/Hebrew parse comes from a tagged dataset, not the model's memory.
+Give Claude a verse, and Exegete produces a rigorous **4-stage exegesis** — structure → original-language philology → theology & intertextuality → sermon framework. Unlike most AI Bible tools, **it never invents the text or the morphology**: every verse is pulled from real data, every Greek/Hebrew parse comes from a tagged dataset, and now **even the lexicon definitions are pulled from real dictionaries** — not the model's memory.
 
 ---
 
@@ -18,6 +18,8 @@ Give Claude a verse, and Exegete produces a rigorous **4-stage exegesis** — st
 🛡️ **No hallucination of Scripture** — the biblical text is extracted by `lookup.py`, never recalled from memory. Original-language parsing comes from STEPBible's tagged data. Uncertain inferences are explicitly marked `[verify]`.
 
 🔬 **Real original languages** — every Greek/Hebrew word with translation, Strong's number, morphology, and lemma.
+
+📖 **Real lexicon definitions** *(new)* — add `--lex` and each word gets its **full dictionary entry** (Greek: Abbott-Smith · Hebrew: BDB), pulled from data and matched by **exact extended Strong's number** so homographs never collide (בָּרָא "create" `H1254A` ≠ "be fat" `H1254B`). No more AI inventing *"according to BDAG…"* — entries that are missing or ambiguous are flagged `[verify]` instead of guessed.
 
 🌏 **Multilingual** — input and read in **English or Korean**. Ships with the public-domain World English Bible; add your own translation (개역개정, etc.).
 
@@ -36,6 +38,12 @@ $ python src/greek_lookup.py "John 3:16"
   ἠγάπησεν (ēgapēsen)  loved   [G0025 V-AAI-3S]  ← ἀγαπάω = to love
   μονογενῆ (monogenē)  only    [G3439 A-ASM]     ← μονογενής = unique
   πιστεύων (pisteuōn)  believing [G4100 V-PAP-NSM] ← πιστεύω = to trust
+
+$ python src/greek_lookup.py "John 3:16" --lex    # + full lexicon definitions
+  ἠγάπησεν (ēgapēsen)  loved   [G0025 V-AAI-3S]  ← ἀγαπάω = to love
+      ▸ ἀγαπάω (agapaō) G0025 — to love
+        to love, to feel and exhibit esteem and goodwill to a person...
+        SYN.: φιλέω — love based on esteem (diligo), vs. spontaneous affection (amo)
 
 $ python src/word_search.py G26          # every occurrence of ἀγάπη (love)
 총 114회 출현 — 요한일서(18), 고린도전서(14), 로마서(9) ...
@@ -62,6 +70,11 @@ python src/lookup.py "John 3:16"     # works immediately (World English Bible in
 python setup_data.py
 ```
 
+**Add lexicon definitions** (Greek Abbott-Smith / Hebrew BDB, CC BY) — enables `--lex`:
+```bash
+python src/build_lexicon.py
+```
+
 **Use another translation** (e.g. Korean 개역개정 — supply your own, respecting its copyright):
 ```bash
 # put data/<your-version>.txt  (one verse per line: "Gen1:1 In the beginning...")
@@ -76,6 +89,7 @@ EXEGETE_BIBLE=data/bible_krv.txt python src/lookup.py "요3:16"
 |------|-------------------|--------------|
 | **4-stage exegesis** | "Exegete \<ref\>" | structure → philology → theology → sermon |
 | **Word study** | `word_search.py G26` | every occurrence of a Greek/Hebrew word |
+| **Lexicon definitions** | `greek_lookup.py <ref> --lex` | full dictionary entry per word (Abbott-Smith / BDB) |
 | **Lectionary** | `liturgical.py "Easter"` | 13 church seasons, key readings |
 | **Sermon series** | `series.py "Philippians"` | book split into preachable units |
 | **Historical background** | `background.py "Exodus"` | people/events/journeys with controversy flags |
@@ -102,6 +116,7 @@ python src/export_docx.py --all                   # everything in output/
 - **Code, prompts, methodology**: MIT.
 - **World English Bible** (bundled): Public Domain.
 - **Original languages** (via `setup_data.py`): STEPBible TAGNT/TAHOT, **CC BY 4.0** © Tyndale House, doctrinally neutral.
+- **Lexicon definitions** (via `src/build_lexicon.py`): STEPBible TBESG (Abbott-Smith) / TBESH (BDB), **CC BY 4.0** © Tyndale House.
 - **Copyrighted translations** (개역개정, NA28, BHS, Louw-Nida): **never bundled** — supply your own. See [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
 
 ## Korean support 🇰🇷

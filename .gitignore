@@ -29,3 +29,6 @@ desktop.ini
 # 원어 형태소 데이터는 용량이 커서 git 제외 — setup_data.py로 다운로드(STEPBible CC BY)
 src/data/original/greek/
 src/data/original/hebrew/
+
+# 사전 데이터(Abbott-Smith/BDB, TBESG·TBESH)도 용량 커서 git 제외 — build_lexicon.py로 생성(STEPBible CC BY)
+src/data/lexicon/

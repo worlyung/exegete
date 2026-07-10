@@ -18,6 +18,8 @@ import re
 import sys
 from pathlib import Path
 
+import lexicon
+
 BASE = Path(__file__).resolve().parent
 GREEK_DIR = BASE / "data" / "original" / "greek"
 ABBR = BASE / "data" / "book_abbrev.json"
@@ -80,6 +82,7 @@ def main():
     p = argparse.ArgumentParser(description="헬라어 신약 원어 조회 (STEPBible TAGNT)")
     p.add_argument("ref", help="구절 (예: 요3:16, 엡2:8-9)")
     p.add_argument("--json", action="store_true")
+    p.add_argument("--lex", action="store_true", help="각 단어에 사전 상세정의 추가 (Abbott-Smith)")
     args = p.parse_args()
 
     ko2step, step2name = load_step_map()
@@ -94,7 +97,11 @@ def main():
         sys.exit(f"원어 데이터 없음: {args.ref} (신약만 지원. 데이터 설치 확인: src/data/original/greek/)")
 
     name = step2name.get(step, step)
+    lex = lexicon.Lexicon("greek") if args.lex else None
     if args.json:
+        if lex:
+            for w in words:
+                w["lexicon"] = lexicon.annotate_word(lex, w["strong"])
         print(json.dumps({"query": args.ref, "book": name, "words": words}, ensure_ascii=False, indent=2))
     else:
         cur = None
@@ -104,6 +111,10 @@ def main():
                 print(f"\n── {name} {w['chapter']}:{w['verse']} ──")
                 cur = vk
             print(f"  {w['greek']:20} {w['gloss_en']:18} [{w['strong']} {w['parse']}]  ← {w['lemma']}")
+            if lex:
+                block = lexicon.format_word_lex(lex, w["strong"])
+                if block:
+                    print(block)
 
 
 if __name__ == "__main__":

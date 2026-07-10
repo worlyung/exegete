@@ -15,6 +15,8 @@
 | **MorphGNT 형태소 태그** | 헬라어 형태소 | CC BY-SA (태그) | github.com/morphgnt/sblgnt |
 | **OSHB / MorphHB** | 히브리어 구약 + 형태소 | CC BY 4.0 | github.com/openscriptures/morphhb |
 | **Strong's 번호 + 최소 정의** | 사전(PD판) | Public Domain | github.com/openscriptures/strongs |
+| **TBESG (Abbott-Smith 기반)** | 헬라어 사전 정의 | CC BY 4.0 | STEPBible — `python src/build_lexicon.py`로 자동 생성 |
+| **TBESH (BDB 기반)** | 히브리어 사전 정의 | CC BY 4.0 | STEPBible — `python src/build_lexicon.py`로 자동 생성 |
 
 > ⚠️ CC BY-SA 자료(OSHB 등)는 copyleft라 **별도 디렉터리 + 해당 라이선스 명기**로 분리해 둘 것. MIT 코드와 섞지 말 것.
 
