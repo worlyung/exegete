@@ -2,10 +2,12 @@
 # 개역개정·NA28·BHS 등 저작권 번역/원문은 사용자가 로컬에 직접 넣는다.
 src/data/*.txt
 !src/data/.gitkeep
-# 공개 도메인(PD) 본문만 화이트리스트로 허용 (예: WEB·KJV·ASV)
+# 공개 도메인(PD) 본문만 화이트리스트로 허용 (예: WEB·KJV·ASV·개역한글)
 !src/data/web.txt
 !src/data/kjv.txt
 !src/data/asv.txt
+# 개역한글(1961) — 저작권 만료(2012), 기본 내장 (PD)
+!src/data/bible_korean.txt
 
 # ── 산출물 ──────────────────────────────────
 output/

@@ -8,6 +8,7 @@
 | 자료 | 종류 | 라이선스 | 출처 |
 |------|------|----------|------|
 | **WEB** (World English Bible) | 영어 번역 | Public Domain | github.com/scrollmapper/bible_databases |
+| **개역한글판** (1961) | 한국어 번역 | 저작권 만료(PD, 2012~) | open-bibles (`build_korean_bible.py`로 생성, **기본 내장**) |
 | **KJV** (King James, 1769) | 영어 번역 | Public Domain (대부분 국가) | github.com/scrollmapper/bible_databases |
 | **ASV** (American Standard, 1901) | 영어 번역 | Public Domain | github.com/scrollmapper/bible_databases |
 | **Westcott-Hort** (1881) | 헬라어 신약 | Public Domain | github.com/morphgnt/westcott-hort |

@@ -21,7 +21,7 @@ Give Claude a verse, and Exegete produces a rigorous **4-stage exegesis** — st
 
 📖 **Real lexicon definitions** *(new)* — add `--lex` and each word gets its **full dictionary entry** (Greek: Abbott-Smith · Hebrew: BDB), pulled from data and matched by **exact extended Strong's number** so homographs never collide (בָּרָא "create" `H1254A` ≠ "be fat" `H1254B`). No more AI inventing *"according to BDAG…"* — entries that are missing or ambiguous are flagged `[verify]` instead of guessed.
 
-🌏 **Multilingual** — input and read in **English or Korean**. Ships with the public-domain World English Bible; add your own translation (개역개정, etc.).
+🌏 **Multilingual** — input and read in **English or Korean**. Ships with the public-domain **World English Bible + 개역한글 (Korean Revised Version)**, so Korean works out of the box.
 
 ⛪ **Tradition-aware, bias-honest** — set your theological tradition; on debated historical questions (Exodus dating, etc.) it presents **both conservative and critical views** rather than asserting one.
 
@@ -75,11 +75,9 @@ python setup_data.py
 python src/build_lexicon.py
 ```
 
-**Use another translation** (e.g. Korean 개역개정 — supply your own, respecting its copyright):
-```bash
-# put data/<your-version>.txt  (one verse per line: "Gen1:1 In the beginning...")
-EXEGETE_BIBLE=data/bible_krv.txt python src/lookup.py "요3:16"
-```
+**Korean works out of the box** — 개역한글 (Korean Revised Version, public domain) is bundled and auto-selected, no setup needed.
+
+**Want 개역개정 (copyrighted)?** Supply your own copy — accessed legally via a Bible app or the Korean Bible Society — as `src/data/bible_krv.txt`, and it takes priority over 개역한글. Never redistribute it.
 
 ---
 
@@ -115,6 +113,7 @@ python src/export_docx.py --all                   # everything in output/
 
 - **Code, prompts, methodology**: MIT.
 - **World English Bible** (bundled): Public Domain.
+- **개역한글 / Korean Revised Version (1961)** (bundled): © Korean Bible Society; copyright expired (2012) → free use, text kept unaltered with attribution.
 - **Original languages** (via `setup_data.py`): STEPBible TAGNT/TAHOT, **CC BY 4.0** © Tyndale House, doctrinally neutral.
 - **Lexicon definitions** (via `src/build_lexicon.py`): STEPBible TBESG (Abbott-Smith) / TBESH (BDB), **CC BY 4.0** © Tyndale House.
 - **Copyrighted translations** (개역개정, NA28, BHS, Louw-Nida): **never bundled** — supply your own. See [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).

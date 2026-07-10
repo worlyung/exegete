@@ -28,9 +28,17 @@ ABBR = BASE / "data" / "book_abbrev.json"
 
 
 def default_bible():
-    krv = BASE / "data" / "bible_krv.txt"
-    web = BASE / "data" / "web.txt"
-    return krv if krv.exists() else web
+    """본문 자동 선택: 사용자 개역개정 > 내장 개역한글 > 영어 WEB.
+
+    bible_krv.txt(사용자가 직접 넣은 개역개정)가 있으면 최우선,
+    없으면 기본 내장된 bible_korean.txt(개역한글, PD), 그것도 없으면 web.txt.
+    """
+    data = BASE / "data"
+    for name in ("bible_krv.txt", "bible_korean.txt", "web.txt"):
+        f = data / name
+        if f.exists():
+            return f
+    return data / "web.txt"
 
 
 DATA = Path(os.environ.get("EXEGETE_BIBLE", default_bible()))

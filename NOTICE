@@ -17,9 +17,17 @@ in this repository.
 See docs/DATA_SOURCES.md for details.
 
 Bundled in this repository:
+- 개역한글판 (Korean Revised Version, 1961) — © 대한성서공회 (Korean Bible Society);
+  copyright expired (2012) → free use. Moral rights retained: do NOT alter the text,
+  and attribute the source. Text from open-bibles (Public Domain); regenerate with
+  src/build_korean_bible.py.
+
+Downloaded on first setup (NOT bundled — fetched by setup scripts, CC BY 4.0):
 - STEPBible-Data TAGNT (Greek NT) / TAHOT (Hebrew OT) — © Tyndale House,
   CC BY 4.0 (https://github.com/STEPBible/STEPBible-Data). See
   src/data/original/LICENSE_STEPBible.txt. Doctrinally neutral.
+- STEPBible TBESG (Abbott-Smith) / TBESH (BDB) lexicon — © Tyndale House, CC BY 4.0
+  (fetched by src/build_lexicon.py).
 
 Public-domain / open-licensed (may be bundled by the user):
 - WEB, KJV, ASV (English) — Public Domain
