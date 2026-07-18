@@ -62,6 +62,21 @@ class RouterTests(unittest.TestCase):
         self.assertEqual(plan["mode"], "needs_scope")
         self.assertEqual(plan["status"], "needs_clarification")
 
+    def test_routes_topic_to_sermon_without_reference(self) -> None:
+        request = "번아웃 주제로 설교문 만들어줘"
+
+        plan = router.plan_request(request)
+
+        self.assertEqual(plan["mode"], "sermon_from_topic")
+        self.assertFalse(plan["direct_output"])
+        self.assertFalse(plan["store_request"])
+        self.assertNotIn(request, json.dumps(plan, ensure_ascii=False))
+
+    def test_liturgical_sermon_stays_liturgical(self) -> None:
+        plan = router.plan_request("이번 부활절 설교문 준비해줘")
+
+        self.assertEqual(plan["mode"], "liturgical")
+
 
 if __name__ == "__main__":
     unittest.main()

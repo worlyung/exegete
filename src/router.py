@@ -24,6 +24,7 @@ class RouteMode(str, Enum):
     BIBLE_STUDY_MATERIAL = "bible_study_material"
     READING_GUIDE = "reading_guide"
     EXPORT_DOCX = "export_docx"
+    SERMON_FROM_TOPIC = "sermon_from_topic"
     NEEDS_SCOPE = "needs_scope"
     SAFETY_FIRST = "safety_first"
     PRIVACY_REVIEW = "privacy_review"
@@ -67,6 +68,7 @@ class RoutePlan:
 _EXEGESIS = ("python src/lookup.py <reference> --pericope", "four_stage_audit")
 _ORIGINAL = ("canonical_original_language_lookup", "lexicon_data_gate")
 _CARE_ACTIONS = ("avoid_cause_claims", "avoid_treatment_or_recovery_guarantees")
+_SERMON = ("python src/search.py <theme>", "topic_to_text_to_sermon")
 
 
 def _has_reference(request: str) -> bool:
@@ -127,6 +129,8 @@ def _route_content(request: str, care_aware: bool) -> RoutePlan:
         return _ready(RouteMode.SERIES_PLANNING, ("python src/series.py <book>",), care_aware)
     if any(word in request for word in ("부활절", "성탄절", "사순절", "절기", "교회력")):
         return _ready(RouteMode.LITURGICAL, ("python src/liturgical.py <season>",), care_aware)
+    if any(word in request for word in ("설교문", "주제로 설교", "설교 만들", "기사로 설교", "자료로 설교", "논문으로 설교")):
+        return _ready(RouteMode.SERMON_FROM_TOPIC, _SERMON, care_aware)
     background_request = any(word in request for word in ("배경", "역사성", "고고학", "광야 경로", "선교여행"))
     if background_request:
         review = _background_is_high(request)
