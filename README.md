@@ -51,6 +51,7 @@ $ python src/word_search.py G26          # every occurrence of ἀγάπη (love
 $ python src/liturgical.py "Easter"      # lectionary readings
 $ python src/series.py "Philippians"     # expository sermon series outline (requires headed Bible data)
 $ python src/background.py "Exodus"       # historical background (with controversy flags)
+$ python src/router.py "John 3:16을 주해해줘"  # JSON plan only; does not run tools
 ```
 
 Then in Claude Code, just ask: **"Exegete John 3:16"** — and `CLAUDE.md` drives the full 4-stage analysis.
@@ -92,6 +93,7 @@ python src/build_lexicon.py
 | **Sermon series** | `series.py "Philippians"` | book split by explicit headings; headed Bible data required |
 | **Historical background** | `background.py "Exodus"` | people/events/journeys with controversy flags |
 | **Devotional / study guide / reading plan / parallels** | see `CLAUDE.md` | lighter formats |
+| **Korean request plan** | `router.py "…"` | local JSON execution plan; never generates content or runs tools |
 
 ---
 
@@ -99,13 +101,20 @@ python src/build_lexicon.py
 
 Turn any exegesis (`output/*.md`) into a **formatted Word document** — headings, tables, original-language text, structure diagrams, and blockquotes are all preserved. Opens in **MS Word and Hangul (한컴 한글)** for editing, printing, and sharing.
 
-Just tell Claude Code: *"export that as Word."*
+An audited exegesis must first be registered, have all four stages complete, and have a
+same-hash `PASS` audit (or an all-factual-claims-pass `WARN` with the exact consent file).
+Then use the gated wrapper; it refuses unapproved or stale drafts and refuses overwrite
+unless explicitly requested.
 
 Or run it yourself — once `pip install python-docx`:
 ```bash
-python src/export_docx.py "output/Eph2_8-9.md"   # one file
-python src/export_docx.py --all                   # everything in output/
+python src/export_exegesis_docx.py "output/Eph2_8-9.md"   # one audited draft
+python src/export_exegesis_docx.py --all --overwrite        # all pass preflight before any conversion
 ```
+
+The legacy `src/export_docx.py` remains compatible for non-gated manual conversion; do
+not use it to declare an exegesis audit complete. See `harness/exegesis_audit.md` and
+`docs/CARE_SAFETY.md` for the audit and care boundaries.
 
 ---
 

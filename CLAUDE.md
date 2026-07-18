@@ -26,6 +26,10 @@
 
 응답 첫머리에 `선택 모드: {모드}`를 한 줄로 밝힌다. 라우팅 사례와 경계 조건은 `tests/routing_cases.md`를 따른다. 이 파일은 자연어 문구를 그대로 맞히는 시험지가 아니라, 선택한 모드·필수 데이터·안전 행동을 점검하는 골든셋이다.
 
+로컬에서 요청 분류만 필요하면 `python src/router.py "<요청>"`를 쓴다. 이 라우터는 `direct_output: false` JSON 실행계획만 출력하며 본문·주해를 직접 만들거나 다른 도구를 실행하지 않고, 요청 원문을 저장·출력하지 않는다. 구절·원어·초안 범위가 모호하면 계획의 `needs_clarification` 질문부터 해결한다.
+
+자해·자살, 즉시 폭력·학대, 급성 자타해 위험 신호는 어떤 주해 모드보다 `safety_first`를 우선한다. 이메일·전화번호·주민번호 패턴은 `privacy_review`로 멈춘다. 비긴급 사별·투병은 원인 단정, 신앙만의 치료, 회복 보장을 하지 않는 돌봄 인지 계획으로 표시한다. 일반 주해에 안전 문구를 삽입하지 않으며, 전체 경계는 `docs/CARE_SAFETY.md`를 따른다.
+
 ### 실행 가능 여부
 
 - **LOCAL 모드**: 이 저장소의 스크립트와 필요한 데이터에 접근할 수 있다. 실제로 실행한 명령과 그 출력만 데이터 근거로 쓴다.
@@ -77,10 +81,11 @@
    - 말미에 고지: "본 분석은 연구·묵상 보조이며 목사·신학자의 권위를 대체하지 않습니다. 원어·신학 쟁점은 권위 자료로 교차 확인하십시오."
    - **워드(.docx) 내보내기** — 사용자가 "워드로/한글로/문서로 뽑아줘"라고 하면:
      ```bash
-     python src/export_docx.py "output/<구절>_주해.md"      # 단일
-     python src/export_docx.py --all                        # output/ 전체
-     ```
-     같은 이름의 `.docx`가 생성된다(제목·표·원어·구조 도표·인용 서식 보존). 이 명령은 감사 상태를 자동으로 강제하지 않으므로, 반드시 감사 통과와 초안 해시 일치를 확인한 뒤 실행한다. MS Word와 한컴 한글에서 바로 열려 편집 가능. `python-docx` 필요(`pip install python-docx`).
+      python src/exegesis_state.py register "output/<구절>_주해.md" --ref "<구절>"
+      python src/export_exegesis_docx.py "output/<구절>_주해.md"      # 단일
+      python src/export_exegesis_docx.py --all --overwrite                    # output/ 전체
+      ```
+      상태 등록 뒤 구조·문헌학·신학·설교 네 단계를 모두 `complete`로 기록하고, 같은 해시의 `PASS` 또는 모든 사실이 `PASS`이며 정확한 동의 파일이 해시로 기록된 `WARN`만 래퍼가 내보낸다. `--all`은 전부 사전검사해 하나라도 불가하면 하나도 변환하지 않는다. 기존 `.docx`는 `--overwrite` 없이는 거부한다. 일반 `src/export_docx.py`는 호환용 변환기이며 이 게이트를 우회하는 완료 선언에 쓰지 않는다.
 
 ## 모드: 교회력(절기) 본문
 

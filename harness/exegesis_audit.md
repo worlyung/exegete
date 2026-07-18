@@ -15,6 +15,8 @@
   - `01_bible_source.txt` 이후: 변형하지 않은 CLI 표준 출력. 각 파일의 짝인 `<파일명>.stderr.txt`에는 표준 오류·경고를 따로 보관한다.
 - `<안전한-초안이름>`은 감사 대상 파일의 확장자를 뺀 Windows 안전 파일명으로 정한다. 예: `output/요3_16_주해.md`는 `output/audit/요3_16_주해/20260718-153000-123/`에 저장한다.
 - 동일 밀리초에 다시 실행되어도 새 폴더 접미사를 붙여 기존 증거를 덮어쓰지 않는다.
+- 개인 식별정보, 상세 목양 사연, 저작권 본문 전문은 Claim Ledger·원증거·감사 폴더명·공유물에 기록하지 않는다. 검증에 필요한 경우에도 익명화한 최소 사실만 남긴다.
+- `src/exegesis_state.py`는 사람 읽기용 `00_manifest.md`, `audit.md`, 원증거를 바꾸지 않는다. top-level `output/*.md` 하나에 대해 `output/audit/<초안이름>/lineage.jsonl`에 append-only 상태 이벤트만 남긴다.
 
 ## 구조 사전 게이트
 
@@ -61,6 +63,8 @@ Claim Ledger를 쓰기 전에 아래 항목을 먼저 확인한다. 이 게이�
 | C-04 | `## 관주`, “…” | 관주 도구가 `<구절>`을 관련 구절로 반환함 | 관주 | `07_xref.json > 실제 최상위 키(예: 요한복음 3:16) > [n]` | 일치/불일치 및 순위·votes | PASS/FAIL/보류(HOLD)/해당 없음 | 유지/수정/삭제 |
 
 증거 파일에는 원출력을 고치거나 요약해 덮어쓰지 않는다. Ledger에는 사람이 읽기 쉬운 JSON 경로·행 위치를 적고, 사실과 다른 부분은 짧게 그대로 기록한다. `WARN`은 사실 행의 판정이 아니라, 모든 사실 행이 `PASS`인 뒤 남은 비사실적 고지에 대한 **최종 상태**이다.
+
+`finalize-audit`가 만드는 `audit.json`은 사람이 작성한 Ledger의 의미를 자동으로 판정하거나 승인하지 않는다. 이 sidecar는 CLI 옵션으로 받은 초안 경로·기준 구절·SHA-256과 기존 `00_manifest.md`의 해당 값을 기계적으로 대조한 결과, 최종 상태, 사실 주장 통과 플래그, `WARN` 동의 파일 해시만 기록한다.
 
 ## PASS / WARN / FAIL 기준
 
@@ -272,8 +276,8 @@ Save-ExegeteEvidence '08_compare.txt' `
 
 ## 내보내기 게이트
 
-- 이 게이트는 **운영 규칙**이다. 현재 `export_docx.py`는 `audit.md`나 상태를 검사하지 않으므로, 호출자가 내보내기 직전에 직접 확인해야 한다.
-- `PASS`: `audit.md`와 원증거를 저장하고, 내보내기 직전 `(Get-FileHash -LiteralPath $draft -Algorithm SHA256).Hash`가 `00_manifest.md`의 감사 당시 SHA-256과 같은 경우에만 대상 Markdown을 `.docx`로 내보낼 수 있다. 해시가 다르면 내용이 바뀐 것이므로 새 감사가 필요하다.
-- `WARN`: 모든 Ledger 사실 행이 `PASS`이고, 사용자 동의가 `audit.md`에 남은 경우에만 내보낼 수 있으며, 남은 비사실적 제한도 함께 고지한다.
-- `FAIL` 또는 `보류(HOLD)`: 완성본으로 선언·공유하거나 `.docx`로 내보내지 않는다. 수정 또는 로컬 증거 수집 뒤 새 감사 실행을 만든다.
-- `python src/export_docx.py --all`을 쓸 때도 각 대상 Markdown마다 위 감사 기록이 있어야 한다. 한 파일의 `PASS`가 다른 파일의 근거가 되지 않는다.
+- `src/export_exegesis_docx.py`만 주해 전용 내보내기 게이트로 쓴다. 기존 `export_docx.py`는 호환용 일반 변환기이며 상태를 검사하지 않는다.
+- 먼저 `python src/exegesis_state.py register "output/<초안>.md" --ref "<구절>"`로 현재 SHA-256의 revision을 등록하고, `stage` 명령으로 `structure`·`philology`·`theology`·`sermon`을 모두 `complete`로 기록한다.
+- `finalize-audit`는 `--draft`, `--ref`, `--sha256`, `--run`, `--outcome`을 받아 `00_manifest.md`의 초안·구절·해시를 기계적으로 대조한다. `PASS`는 `--all-factual-claims-pass`가 필수다. `WARN`도 이 플래그와 audit run 아래 UTF-8 JSON 동의 파일(`consenter`, `at_utc`, 비어 있지 않은 `limitations[]`) 및 정확한 파일 해시가 필수다.
+- 현재 초안 SHA-256이 등록·감사 이벤트와 1바이트라도 다르면 `STALE`이며 내보낼 수 없다. `FAIL`, `HOLD`, 미완료 단계, 동의 없는 `WARN`은 완성·공유·내보내기 모두 불가다.
+- 단일 대상은 `python src/export_exegesis_docx.py "output/<초안>.md"`를 사용한다. 기존 `.docx`는 명시적인 `--overwrite` 없이는 거부한다. `--all`은 모든 top-level `output/*.md`를 먼저 검사하므로 하나라도 불가하면 0개를 변환한다.

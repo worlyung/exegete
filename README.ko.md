@@ -50,6 +50,7 @@ $ python src/word_search.py G26              # 한 단어가 나오는 모든 �
 $ python src/liturgical.py "부활절"           # 교회력 절기 본문
 $ python src/series.py "빌립보서"             # 강해 설교 시리즈 골격 (소제목 포함 본문 필요)
 $ python src/background.py "출애굽"           # 역사적 배경 (논쟁도 표시)
+$ python src/router.py "요한복음 3:16을 주해해줘" # JSON 실행계획만 출력, 도구 실행 안 함
 ```
 </details>
 
@@ -94,23 +95,24 @@ Claude Code에게 이렇게 말하세요:
 | **교회력 절기** | "이번 부활절 설교 본문 추천해줘" |
 | **강해 시리즈** | "빌립보서 강해 시리즈 짜줘" |
 | **성경 배경 연구** | "출애굽 역사 배경 알려줘" |
+| **한국어 요청 실행계획** | `python src/router.py "…"` |
 | **큐티·성경공부·통독·병행본문** | "○○ 큐티용으로 묵상 만들어줘" |
 
 ---
 
 ## 워드(.docx)로 내보내기 🖨️
 
-주해 결과(`output/○○_주해.md`)를 **서식이 살아있는 워드 문서로** 변환할 수 있습니다 — 제목·표·원어·구조 도표·인용이 그대로 옮겨지고, **MS Word와 한컴 한글에서 열려** 편집·인쇄·공유가 편합니다.
+주해 결과(`output/○○_주해.md`)를 **서식이 살아있는 워드 문서로** 변환할 수 있습니다 — 제목·표·원어·구조 도표·인용이 그대로 옮겨지고, **MS Word와 한컴 한글에서 열려** 편집·인쇄·공유가 편합니다. 단, 4단계 주해는 상태 등록과 네 단계 완료 뒤 같은 SHA-256의 `PASS`, 또는 모든 사실이 `PASS`이고 정확한 동의 파일이 있는 `WARN`일 때만 내보냅니다.
 
 Claude Code에게 그냥 말하세요:
 > "방금 그 주해 워드로 만들어줘"
 
 직접 실행하려면 — 한 번만 `pip install python-docx` 후:
 ```bash
-python src/export_docx.py "output/엡2_8-9_주해.md"   # 한 파일
-python src/export_docx.py --all                       # output/ 전체
+python src/export_exegesis_docx.py "output/엡2_8-9_주해.md"   # 감사 통과 초안 하나
+python src/export_exegesis_docx.py --all --overwrite           # 모두 사전검사 후 일괄 변환
 ```
-→ 같은 이름의 `.docx`가 만들어집니다. (한글 파일까지 원하면 그 워드 파일을 한컴 한글에서 열어 `.hwpx`로 저장하면 됩니다.)
+→ 같은 이름의 `.docx`가 만들어집니다. 기존 파일은 `--overwrite` 없이는 덮어쓰지 않습니다. 기존 `src/export_docx.py`는 일반 Markdown 변환 호환성을 위해 남아 있으며, 주해 완료 선언용 게이트가 아닙니다. 감사 절차는 `harness/exegesis_audit.md`, 목양·개인정보 경계는 `docs/CARE_SAFETY.md`를 따릅니다. (한글 파일까지 원하면 그 워드 파일을 한컴 한글에서 열어 `.hwpx`로 저장하면 됩니다.)
 
 ---
 

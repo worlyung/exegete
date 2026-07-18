@@ -26,6 +26,8 @@ No dependencies beyond Python 3.8+ standard library.
 ## Tests
 ```bash
 python -m unittest discover -s tests -p "test_*.py" -v
+python -m unittest tests.test_router tests.test_exegesis_state -v
 ```
 The regression tests use only the Python standard library and cover safe
-pericope and series boundaries for headingless Bible data.
+pericope and series boundaries for headingless Bible data, plan-only routing,
+and hash-bound audit/export gates.
