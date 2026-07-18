@@ -2,7 +2,7 @@
 
 **🌐 English | [한국어](README.ko.md)**
 
-**Hallucination-resistant Bible exegesis for Claude — in Greek, Hebrew, English, and Korean.**
+**Hallucination-resistant Bible exegesis for Claude, Codex, and other agents — in Greek, Hebrew, English, and Korean.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/Bible%20data-CC%20BY%204.0-green.svg)](docs/DATA_SOURCES.md)
@@ -19,6 +19,9 @@ This update adds quality, safety, and publication guardrails around the existing
 
 | Area | What changed | What it means in practice |
 |------|--------------|----------------------------|
+| **Topic/source → sermon** 🆕 | Start from a **topic, article, or paper** (not a verse): `search` surfaces candidate texts, the pastor picks one, then 4-stage exegesis → sermon manuscript. | Candidate texts are never invented — only pulled from real search output — and the text is never reduced to a proof-text for the source material (eisegesis blocked). The pastor makes the final text choice. |
+| **Sermon illustration audit strength** 🆕 | The factual audit of sermon illustrations & humanities citations is **dialed by interview**: `pulpit / standard / publication`. | Text, original language, and cross-references (hallucination-critical) stay strict always; only illustrations flex to pulpit language. Theological/applicational correctness is never judged. |
+| **Multi-agent support** 🆕 | Added `AGENTS.md` so **Codex and other agents** — not just Claude — run under the same guidance, audit, and safety rules. | Tools are plain Python (agent-agnostic); methodology stays in `CLAUDE.md` as the single source of truth. |
 | **Exegesis quality** | Added a required Genre Verdict, a Claim Ledger audit harness, and routing regression cases. | A 4-stage exegesis now separates literary genre, data-verifiable claims, and theological application before it is called complete. |
 | **Context and series safety** | `lookup.py --pericope` falls back to the requested chapter with a warning when headings cannot establish a pericope; `series.py` refuses headingless data. | The tool no longer silently expands a request to an entire book or invents sermon-series units. |
 | **Korean request router** | Added `python src/router.py "<request>"`. It returns a JSON plan with `direct_output: false` and never runs tools, creates content, saves, or echoes the request. | Korean requests can be classified consistently before a worker runs the existing Bible tools. High-controversy background topics are marked for review. |
@@ -106,6 +109,7 @@ python src/build_lexicon.py
 | **Word study** | `word_search.py G26` | every occurrence of a Greek/Hebrew word |
 | **Lexicon definitions** | `greek_lookup.py <ref> --lex` | full dictionary entry per word (Abbott-Smith / BDB) |
 | **Lectionary** | `liturgical.py "Easter"` | 13 church seasons, key readings |
+| **Topic/source → sermon** 🆕 | "make a sermon on \<topic\>" / paste an article | topic → candidate texts → pastor picks → exegesis → manuscript |
 | **Sermon series** | `series.py "Philippians"` | book split by explicit headings; headed Bible data required |
 | **Historical background** | `background.py "Exodus"` | people/events/journeys with controversy flags |
 | **Devotional / study guide / reading plan / parallels** | see `CLAUDE.md` | lighter formats |
