@@ -13,6 +13,22 @@ Give Claude a verse, and Exegete produces a rigorous **4-stage exegesis** — st
 
 ---
 
+## What changed in this update
+
+This update adds quality, safety, and publication guardrails around the existing Bible tools. It does **not** add an account system, a counselling-record database, or external transmission of requests.
+
+| Area | What changed | What it means in practice |
+|------|--------------|----------------------------|
+| **Exegesis quality** | Added a required Genre Verdict, a Claim Ledger audit harness, and routing regression cases. | A 4-stage exegesis now separates literary genre, data-verifiable claims, and theological application before it is called complete. |
+| **Context and series safety** | `lookup.py --pericope` falls back to the requested chapter with a warning when headings cannot establish a pericope; `series.py` refuses headingless data. | The tool no longer silently expands a request to an entire book or invents sermon-series units. |
+| **Korean request router** | Added `python src/router.py "<request>"`. It returns a JSON plan with `direct_output: false` and never runs tools, creates content, saves, or echoes the request. | Korean requests can be classified consistently before a worker runs the existing Bible tools. High-controversy background topics are marked for review. |
+| **Care and privacy boundary** | The router gives priority to immediate crisis or actual identifier patterns, while ordinary exegesis stays free of automatic safety text. | It asks for safe next steps rather than diagnosing, and it does not retain the request. See [`docs/CARE_SAFETY.md`](docs/CARE_SAFETY.md). |
+| **Audited Word export** | Added `exegesis_state.py` and `export_exegesis_docx.py`. They bind a draft SHA-256, four completed stages, audit result, and WARN-consent file before export. | Changed drafts, `FAIL`/`HOLD`, incomplete stages, or unconsented `WARN` results cannot be exported through the audited path. `--all` preflights every draft before converting any; overwriting requires `--overwrite`. |
+
+The older `src/export_docx.py` remains available as a general Markdown converter. It is not the audited-completion path for an exegesis.
+
+---
+
 ## Why Exegete is different
 
 🛡️ **No hallucination of Scripture** — the biblical text is extracted by `lookup.py`, never recalled from memory. Original-language parsing comes from STEPBible's tagged data. Uncertain inferences are explicitly marked `[verify]`.
