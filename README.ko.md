@@ -48,7 +48,7 @@ $ python src/greek_lookup.py "요3:16"        # 원어 분석
 $ python src/greek_lookup.py "요3:16" --lex  # 원어 + 사전 상세 정의
 $ python src/word_search.py G26              # 한 단어가 나오는 모든 구절
 $ python src/liturgical.py "부활절"           # 교회력 절기 본문
-$ python src/series.py "빌립보서"             # 강해 설교 시리즈 골격
+$ python src/series.py "빌립보서"             # 강해 설교 시리즈 골격 (소제목 포함 본문 필요)
 $ python src/background.py "출애굽"           # 역사적 배경 (논쟁도 표시)
 ```
 </details>

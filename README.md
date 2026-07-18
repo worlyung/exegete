@@ -49,7 +49,7 @@ $ python src/word_search.py G26          # every occurrence of ἀγάπη (love
 총 114회 출현 — 요한일서(18), 고린도전서(14), 로마서(9) ...
 
 $ python src/liturgical.py "Easter"      # lectionary readings
-$ python src/series.py "Philippians"     # expository sermon series outline
+$ python src/series.py "Philippians"     # expository sermon series outline (requires headed Bible data)
 $ python src/background.py "Exodus"       # historical background (with controversy flags)
 ```
 
@@ -89,7 +89,7 @@ python src/build_lexicon.py
 | **Word study** | `word_search.py G26` | every occurrence of a Greek/Hebrew word |
 | **Lexicon definitions** | `greek_lookup.py <ref> --lex` | full dictionary entry per word (Abbott-Smith / BDB) |
 | **Lectionary** | `liturgical.py "Easter"` | 13 church seasons, key readings |
-| **Sermon series** | `series.py "Philippians"` | book split into preachable units |
+| **Sermon series** | `series.py "Philippians"` | book split by explicit headings; headed Bible data required |
 | **Historical background** | `background.py "Exodus"` | people/events/journeys with controversy flags |
 | **Devotional / study guide / reading plan / parallels** | see `CLAUDE.md` | lighter formats |
 

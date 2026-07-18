@@ -110,6 +110,8 @@ def is_english_bible():
 def main():
     if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
         sys.stdout.reconfigure(encoding="utf-8")
+    if sys.stderr.encoding and sys.stderr.encoding.lower() != "utf-8":
+        sys.stderr.reconfigure(encoding="utf-8")
 
     p = argparse.ArgumentParser(description="Bible verse lookup (KO/EN)")
     p.add_argument("ref", help="구절/verse (요3:16, John 3:16, 창1:1-5)")
@@ -132,15 +134,33 @@ def main():
     lo, hi = min(idxs), max(idxs)
 
     if args.pericope:
-        s = lo
-        while s > 0 and order[s][0] == step:
-            if verses[order[s]][0]:
-                break
-            s -= 1
-        e = hi
-        while e + 1 < len(order) and order[e + 1][0] == step and not verses[order[e + 1]][0]:
-            e += 1
-        lo, hi = s, e
+        has_start_heading = any(
+            key[0] == step
+            and key[1] == ch
+            and key[2] <= vs
+            and verses[key][0] is not None
+            for key in order
+        )
+        if has_start_heading:
+            s = lo
+            while s > 0 and order[s][0] == step:
+                if verses[order[s]][0]:
+                    break
+                s -= 1
+            e = hi
+            while e + 1 < len(order) and order[e + 1][0] == step and not verses[order[e + 1]][0]:
+                e += 1
+            lo, hi = s, e
+        else:
+            chapter_idxs = [
+                i for i, key in enumerate(order) if key[0] == step and key[1] == ch
+            ]
+            lo, hi = min(chapter_idxs), max(chapter_idxs)
+            print(
+                f"⚠ 요청 절 앞 같은 장의 소제목 경계를 찾지 못해 {name} {ch}장 전체를 문맥 폴백으로 표시합니다. "
+                "정확한 단락 경계는 [확인 필요].",
+                file=sys.stderr,
+            )
     elif args.context:
         lo = max(0, lo - args.context)
         hi = min(len(order) - 1, hi + args.context)

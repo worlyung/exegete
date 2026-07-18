@@ -45,6 +45,8 @@ def norm_book(tok, a2n, n2a):
 def main():
     if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
         sys.stdout.reconfigure(encoding="utf-8")
+    if sys.stderr.encoding and sys.stderr.encoding.lower() != "utf-8":
+        sys.stderr.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser(description="강해 시리즈 기획 (책→단락)")
     p.add_argument("book", help="책명 (예: 빌립보서, 빌)")
     p.add_argument("--json", action="store_true")
@@ -58,13 +60,22 @@ def main():
         sys.exit(f"본문 데이터 없음: {DATA} (data/README.md 참조)")
 
     name = a2n[abbr]
-    units = []      # [(start_ref, title, [verses...])]
-    cur = None
+    book_verses = []
     for line in DATA.read_text(encoding="utf-8").splitlines():
         m = re.match(rf"^{re.escape(abbr)}(\d+):(\d+)\s+(.*)$", line)
         if not m:
             continue
         ch, v, body = int(m.group(1)), int(m.group(2)), m.group(3)
+        book_verses.append((ch, v, body))
+
+    if not book_verses:
+        sys.exit(f"{name} 본문 없음 (해당 번역본에 본문이 있는지 확인)")
+    if not any(re.match(r"^<([^>]+)>", body) for _, _, body in book_verses):
+        sys.exit(f"{name} 소제목 없음 (소제목 포함 본문을 지정해 다시 실행)")
+
+    units = []      # [(start_ref, title, [verses...])]
+    cur = None
+    for ch, v, body in book_verses:
         hm = re.match(r"^<([^>]+)>", body)
         if hm or cur is None:
             title = hm.group(1) if hm else "(서두)"
@@ -72,9 +83,6 @@ def main():
             units.append(cur)
         else:
             cur["end"] = f"{ch}:{v}"
-
-    if not units:
-        sys.exit(f"{name} 본문/소제목 없음 (해당 번역본에 소제목이 있는지 확인)")
 
     if args.json:
         print(json.dumps({"book": name, "count": len(units), "units": units}, ensure_ascii=False, indent=2))
@@ -90,7 +98,7 @@ def main():
             else:
                 rng = f"{u['start']}-{u['end']}"     # 장 넘김: 3:17-4:1
             print(f"{i:2}회  {name} {rng}  — {u['title']}")
-        print(f"\n각 회차를 4단계 주해로 전개하려면: 해당 구절로 주해 요청")
+        print("\n각 회차를 4단계 주해로 전개하려면: 해당 구절로 주해 요청")
 
 
 if __name__ == "__main__":
