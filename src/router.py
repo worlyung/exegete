@@ -21,6 +21,7 @@ class RouteMode(str, Enum):
     LITURGICAL = "liturgical"
     SERIES_PLANNING = "series_planning"
     BACKGROUND_RESEARCH = "background_research"
+    CONCEPT_LINEAGE = "concept_lineage"
     BIBLE_STUDY_MATERIAL = "bible_study_material"
     READING_GUIDE = "reading_guide"
     EXPORT_DOCX = "export_docx"
@@ -131,6 +132,8 @@ def _route_content(request: str, care_aware: bool) -> RoutePlan:
         return _ready(RouteMode.LITURGICAL, ("python src/liturgical.py <season>",), care_aware)
     if any(word in request for word in ("설교문", "주제로 설교", "설교 만들", "기사로 설교", "자료로 설교", "논문으로 설교")):
         return _ready(RouteMode.SERMON_FROM_TOPIC, _SERMON, care_aware)
+    if any(word in request for word in ("교리사", "교리의 역사", "개념의 역사", "개념 계보", "교리 계보")):
+        return _ready(RouteMode.CONCEPT_LINEAGE, ("python src/word_search.py <strongs>", "python src/search.py <term>"), care_aware)
     background_request = any(word in request for word in ("배경", "역사성", "고고학", "광야 경로", "선교여행"))
     if background_request:
         review = _background_is_high(request)

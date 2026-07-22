@@ -77,6 +77,20 @@ class RouterTests(unittest.TestCase):
 
         self.assertEqual(plan["mode"], "liturgical")
 
+    def test_routes_doctrine_history_to_concept_lineage(self) -> None:
+        request = "칭의 교리의 역사를 정리해줘"
+
+        plan = router.plan_request(request)
+
+        self.assertEqual(plan["mode"], "concept_lineage")
+        self.assertFalse(plan["direct_output"])
+        self.assertNotIn(request, json.dumps(plan, ensure_ascii=False))
+
+    def test_background_history_stays_background(self) -> None:
+        plan = router.plan_request("출애굽의 역사성 배경을 알려줘")
+
+        self.assertEqual(plan["mode"], "background_research")
+
 
 if __name__ == "__main__":
     unittest.main()
