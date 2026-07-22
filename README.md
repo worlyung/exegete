@@ -19,6 +19,8 @@ This update adds quality, safety, and publication guardrails around the existing
 
 | Area | What changed | What it means in practice |
 |------|--------------|----------------------------|
+| **Research discipline** 🆕 | Adopted humanities-research safeguards (inspired by [humanities-superpowers](https://github.com/icerain-cmd/humanities-superpowers)): observation vs. interpretation are kept distinct, every key interpretive claim must carry **at least one rival reading**, the same original-language word keeps the same translation throughout, and direct quotes attributed to theologians fall under the citation audit. | An exegesis can no longer present inference as observation, silently ignore competing readings, drift between renderings of one Greek/Hebrew word, or invent a Calvin quote — unverifiable attributions become `[verification needed]`. |
+| **Concept lineage mode** 🆕 | "History of the doctrine of justification" style requests get their own mode: scripture usage first (`word_search`/`search`), then patristic → medieval → Reformation → modern lineage, with anachronism explicitly banned and contested points presented from both sides. | Doctrine-history answers start from actual biblical occurrences instead of memory, read each thinker by the questions of *their* era, and follow the same audit rules as everything else. Router + golden-set case `R16` included. |
 | **Topic/source → sermon** 🆕 | Start from a **topic, article, or paper** (not a verse): `search` surfaces candidate texts, the pastor picks one, then 4-stage exegesis → sermon manuscript. | Candidate texts are never invented — only pulled from real search output — and the text is never reduced to a proof-text for the source material (eisegesis blocked). The pastor makes the final text choice. |
 | **Sermon illustration audit strength** 🆕 | The factual audit of sermon illustrations & humanities citations is **dialed by interview**: `pulpit / standard / publication`. | Text, original language, and cross-references (hallucination-critical) stay strict always; only illustrations flex to pulpit language. Theological/applicational correctness is never judged. |
 | **Multi-agent support** 🆕 | Added `AGENTS.md` so **Codex and other agents** — not just Claude — run under the same guidance, audit, and safety rules. | Tools are plain Python (agent-agnostic); methodology stays in `CLAUDE.md` as the single source of truth. |
@@ -112,6 +114,7 @@ python src/build_lexicon.py
 | **Topic/source → sermon** 🆕 | "make a sermon on \<topic\>" / paste an article | topic → candidate texts → pastor picks → exegesis → manuscript |
 | **Sermon series** | `series.py "Philippians"` | book split by explicit headings; headed Bible data required |
 | **Historical background** | `background.py "Exodus"` | people/events/journeys with controversy flags |
+| **Concept lineage** 🆕 | "history of \<doctrine\>" | scripture usage → patristic → Reformation → modern; anachronism banned |
 | **Devotional / study guide / reading plan / parallels** | see `CLAUDE.md` | lighter formats |
 | **Korean request plan** | `router.py "…"` | local JSON execution plan; never generates content or runs tools |
 
