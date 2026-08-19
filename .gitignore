@@ -37,3 +37,6 @@ src/data/lexicon/
 
 # 관주 데이터도 용량 커서 git 제외 — build_xref.py로 생성(openbible.info CC BY)
 src/data/xref/
+
+# 70인역(LXX) 본문도 용량 커서 git 제외 — build_lxx.py로 생성(Swete 1887-94, PD)
+src/data/lxx/

@@ -18,6 +18,7 @@
 | **Strong's 번호 + 최소 정의** | 사전(PD판) | Public Domain | github.com/openscriptures/strongs |
 | **TBESG (Abbott-Smith 기반)** | 헬라어 사전 정의 | CC BY 4.0 | STEPBible — `python src/build_lexicon.py`로 자동 생성 |
 | **TBESH (BDB 기반)** | 히브리어 사전 정의 | CC BY 4.0 | STEPBible — `python src/build_lexicon.py`로 자동 생성 |
+| **70인역 Swete 판** (1887–94) | 구약 헬라어(LXX) | Public Domain (원문) | github.com/eliranwong/LXX-Swete-1930 — `python src/build_lxx.py`로 자동 생성 |
 
 > ⚠️ CC BY-SA 자료(OSHB 등)는 copyleft라 **별도 디렉터리 + 해당 라이선스 명기**로 분리해 둘 것. MIT 코드와 섞지 말 것.
 
@@ -30,6 +31,7 @@
 | **BHS** (Biblia Hebraica Stuttgartensia) | Deutsche Bibelgesellschaft | 구약 히브리어 비평본. 번들 불가 |
 | **SBLGNT** | SBL & Logos | 텍스트 번들 재배포 위험. 형태소 태그(MorphGNT)는 별개 |
 | **WLC** (Westminster Leningrad Codex) | Westminster Seminary | 번들 비권장 → OSHB로 대체 |
+| **Rahlfs LXX** (1935) / 괴팅겐 비평본 | Deutsche Bibelgesellschaft 등 | 70인역 표준 비평본. 현행 저작권 → Swete 판(PD)으로 대체 |
 | **Louw-Nida 사전** | United Bible Societies | 정의·도메인 텍스트 번들 금지. 도메인 번호 참조만 신중히 |
 
 > ⚠️ archive.org 등에 스캔본이 올라와 있어도, NA28·BHS·Louw-Nida는 현행 저작권이므로 그 출처가 합법이 아닐 수 있다. 저장소에 넣지 말 것.
