@@ -40,3 +40,6 @@ src/data/xref/
 
 # 70인역(LXX) 본문도 용량 커서 git 제외 — build_lxx.py로 생성(Swete 1887-94, PD)
 src/data/lxx/
+
+# OpenGNT(LN·담화 표지)도 용량 커서 git 제외 — build_opengnt.py로 생성(CC BY-SA 4.0, 카피레프트 분리 보관)
+src/data/opengnt/

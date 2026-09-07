@@ -19,6 +19,7 @@ This update adds quality, safety, and publication guardrails around the existing
 
 | Area | What changed | What it means in practice |
 |------|--------------|----------------------------|
+| **Louw-Nida & discourse features** 🆕 | Added `src/opengnt_lookup.py` + `src/build_opengnt.py` (OpenGNT, CC BY-SA 4.0, kept in a separate non-bundled data dir): per-word **Louw-Nida semantic-domain numbers**, **Levinsohn discourse annotations** (points of departure, focal prominence), OT-quotation spans, and Korean glosses for parsing codes. | Stage-2 discourse analysis (Table A's LN numbers and prominence markers) is now grounded in tagged data instead of the model's judgment — e.g. John 3:16's fronted Οὕτως is marked `Focus+` by Levinsohn's data, not by AI intuition. Morphology/lexicon authority stays with STEPBible (`greek_lookup.py`); differences between the two text streams must be noted. |
 | **Septuagint (LXX) lookup** 🆕 | Added `src/lxx_lookup.py` + `src/build_lxx.py` — the Greek OT (Swete 1887–94, public domain), 30,533 verses, queried from data. Give a Korean reference and Psalms (−1 numbering) / Jeremiah (reordered chapters) are auto-converted to LXX numbering with both references shown; Daniel defaults to Theodotion; Jer 49 and deuterocanon go through explicit `--raw`. | NT-quotes-OT study (e.g. 렘31:31 "new covenant" → LXX 38:31, the text Hebrews 8 quotes) without the model reciting Greek from memory. Ambiguous mappings are refused rather than guessed; a Swete-vs-Rahlfs caveat is printed on every result. |
 | **Research discipline** 🆕 | Adopted humanities-research safeguards (inspired by [humanities-superpowers](https://github.com/icerain-cmd/humanities-superpowers)): observation vs. interpretation are kept distinct, every key interpretive claim must carry **at least one rival reading**, the same original-language word keeps the same translation throughout, and direct quotes attributed to theologians fall under the citation audit. | An exegesis can no longer present inference as observation, silently ignore competing readings, drift between renderings of one Greek/Hebrew word, or invent a Calvin quote — unverifiable attributions become `[verification needed]`. |
 | **Concept lineage mode** 🆕 | "History of the doctrine of justification" style requests get their own mode: scripture usage first (`word_search`/`search`), then patristic → medieval → Reformation → modern lineage, with anachronism explicitly banned and contested points presented from both sides. | Doctrine-history answers start from actual biblical occurrences instead of memory, read each thinker by the questions of *their* era, and follow the same audit rules as everything else. Router + golden-set case `R16` included. |
@@ -70,6 +71,9 @@ $ python src/greek_lookup.py "John 3:16" --lex    # + full lexicon definitions
 $ python src/word_search.py G26          # every occurrence of ἀγάπη (love)
 총 114회 출현 — 요한일서(18), 고린도전서(14), 로마서(9) ...
 
+$ python src/opengnt_lookup.py "요3:16"   # Louw-Nida domains + Levinsohn discourse features
+  Οὕτως  [G3779 ADV]  LN 61.10  ◦ 담화: Focus+ — placed in P2 for focal prominence
+
 $ python src/lxx_lookup.py "시23:1"       # Septuagint (Greek OT) — auto-converts to LXX Psalm 22
   [Psa.22:1] Ψαλμὸς τῷ Δαυείδ. Κύριος ποιμαίνει με, καὶ οὐδέν με ὑστερήσει.
 
@@ -106,6 +110,11 @@ python src/build_lexicon.py
 python src/build_lxx.py
 ```
 
+**Add Louw-Nida domains & discourse features** (OpenGNT, CC BY-SA) — enables `opengnt_lookup.py`:
+```bash
+python src/build_opengnt.py
+```
+
 **Korean works out of the box** — 개역한글 (Korean Revised Version, public domain) is bundled and auto-selected, no setup needed.
 
 **Want 개역개정 (copyrighted)?** Supply your own copy — accessed legally via a Bible app or the Korean Bible Society — as `src/data/bible_krv.txt`, and it takes priority over 개역한글. Never redistribute it.
@@ -119,6 +128,7 @@ python src/build_lxx.py
 | **4-stage exegesis** | "Exegete \<ref\>" | structure → philology → theology → sermon |
 | **Word study** | `word_search.py G26` | every occurrence of a Greek/Hebrew word |
 | **Lexicon definitions** | `greek_lookup.py <ref> --lex` | full dictionary entry per word (Abbott-Smith / BDB) |
+| **Louw-Nida & discourse** 🆕 | `opengnt_lookup.py "요3:16"` | per-word LN domains + Levinsohn discourse features (NT) |
 | **Septuagint (LXX)** 🆕 | `lxx_lookup.py "시23:1"` | Greek OT with MT→LXX numbering conversion (Psalms/Jeremiah) |
 | **Lectionary** | `liturgical.py "Easter"` | 13 church seasons, key readings |
 | **Topic/source → sermon** 🆕 | "make a sermon on \<topic\>" / paste an article | topic → candidate texts → pastor picks → exegesis → manuscript |
@@ -159,6 +169,7 @@ not use it to declare an exegesis audit complete. See `harness/exegesis_audit.md
 - **Original languages** (via `setup_data.py`): STEPBible TAGNT/TAHOT, **CC BY 4.0** © Tyndale House, doctrinally neutral.
 - **Lexicon definitions** (via `src/build_lexicon.py`): STEPBible TBESG (Abbott-Smith) / TBESH (BDB), **CC BY 4.0** © Tyndale House.
 - **Septuagint** (via `src/build_lxx.py`): H. B. Swete, *The Old Testament in Greek* (1887–94), **Public Domain**; digital source [eliranwong/LXX-Swete-1930](https://github.com/eliranwong/LXX-Swete-1930). (Rahlfs 1935 is still copyrighted and is not used.)
+- **OpenGNT** (via `src/build_opengnt.py`): LN numbers, Levinsohn discourse features, Korean parsing glosses — **CC BY-SA 4.0** © eliranwong; copyleft, kept in a separate data dir and never bundled with the MIT repo. LN *numbers* only — Louw-Nida definition text remains copyrighted and is not included.
 - **Copyrighted translations** (개역개정, NA28, BHS, Louw-Nida): **never bundled** — supply your own. See [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
 
 ## Korean support 🇰🇷

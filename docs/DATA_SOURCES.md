@@ -19,6 +19,7 @@
 | **TBESG (Abbott-Smith 기반)** | 헬라어 사전 정의 | CC BY 4.0 | STEPBible — `python src/build_lexicon.py`로 자동 생성 |
 | **TBESH (BDB 기반)** | 히브리어 사전 정의 | CC BY 4.0 | STEPBible — `python src/build_lexicon.py`로 자동 생성 |
 | **70인역 Swete 판** (1887–94) | 구약 헬라어(LXX) | Public Domain (원문) | github.com/eliranwong/LXX-Swete-1930 — `python src/build_lxx.py`로 자동 생성 |
+| **OpenGNT** (OGNT, Nestle 1904 기반) | 신약 LN 의미영역·Levinsohn 담화 표지·한국어 파싱 풀이 | **CC BY-SA 4.0** (⚠️ 카피레프트 — `src/data/opengnt/` 분리 보관, 번들 금지) | github.com/eliranwong/OpenGNT — `python src/build_opengnt.py`로 자동 생성 |
 
 > ⚠️ CC BY-SA 자료(OSHB 등)는 copyleft라 **별도 디렉터리 + 해당 라이선스 명기**로 분리해 둘 것. MIT 코드와 섞지 말 것.
 

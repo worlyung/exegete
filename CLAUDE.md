@@ -64,6 +64,7 @@
      - 신약(헬라어): `python src/greek_lookup.py "<구절>"`
      - 구약(히브리어): `python src/hebrew_lookup.py "<구절>"`
      - 단어별 원어·음역·뜻·스트롱·문법파싱·원형이 나온다. 파싱코드(예: V-RPP-NPM=완료수동분사 / HVqp3ms=칼 완료 3인칭남성단수)는 분석 AI가 해석. 데이터에 없는 추론만 `[확인 필요]`.
+     - **신약 LN 의미영역·담화 표지**: `python src/opengnt_lookup.py "<구절>"` — 단어별 Louw-Nida 번호, Levinsohn 담화 주석(출발점 PoD·초점 Focus 등), 구약 인용 구간, 파싱코드 한국어 풀이. Table A의 LN·강조표지를 기억이 아니라 이 데이터로 근거한다. 본문 계열이 달라(OGNT=Nestle 1904) 파싱·사전 기준은 greek_lookup.py이며, 두 출력이 다르면 그 차이를 명시한다. 최초 1회 `python src/build_opengnt.py`.
      - **사전 상세 정의가 필요하면 `--lex`** 를 붙인다(예: `python src/greek_lookup.py "<구절>" --lex`). 각 단어에 사전 정의가 데이터에서 추출돼 붙는다 — 헬라어=Abbott-Smith, 히브리어=BDB(둘 다 STEPBible TBESG/TBESH, CC BY). 확장 스트롱번호로 정확 매칭해 동음이의어(예: בָּרָא 창조 H1254A vs 살찌다 H1254B) 오류를 막는다. **사전 정의도 기억으로 쓰지 말고 이 옵션으로 추출**하고, 없거나 모호하면 자동 표시되는 `[확인 필요]`를 존중한다. 최초 1회 `python src/build_lexicon.py`로 사전 데이터 설치.
    - 3단계: 신학·역사·상호본문 (Hays 기준·LXX·정경 궤적). **LXX 본문도 데이터에서 추출**한다(기억 금지):
      - 70인역: `python src/lxx_lookup.py "<구절>"` — 신약의 구약 인용 연구·구약 헬라어 대조. 개역 참조를 주면 시편(-1편)·예레미야(장 재배열)는 LXX 번호로 자동 변환되고 두 번호가 함께 표시된다. 출력의 ⚠ 경고(표제 절 밀림, Swete 판 고지)를 존중하고, 렘49장·외경은 `--raw "코드.장:절"`로 직접 조회. 최초 1회 `python src/build_lxx.py`.
